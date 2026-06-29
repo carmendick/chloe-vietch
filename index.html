@@ -1,149 +1,472 @@
 <!doctype html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CreatorDesk Publish</title>
-    <meta name="tiktok-developers-site-verification" content="aJRTkjxVBI3EqBbVOtczAxNbjYV9hYoK">
-    <meta name="description" content="CreatorDesk Publish helps creators prepare, review, and publish short-form video posts.">
-    <link rel="icon" href="./assets/creator-desk-mark.png">
-    <link rel="stylesheet" href="./styles.css">
-  </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="./index.html" aria-label="CreatorDesk Publish home">
-        <img src="./assets/creator-desk-mark.png" alt="" width="36" height="36">
-        <span>CreatorDesk Publish</span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms</a>
-        <a class="nav-button" href="mailto:carmendickson5817@gmail.com">Contact</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="workspace" aria-labelledby="workspace-title">
-        <div class="workspace-header">
-          <div>
-            <p class="eyebrow">Creator publishing tool</p>
-            <h1 id="workspace-title">Plan, review, and prepare short-form posts from one calm workspace.</h1>
-          </div>
-          <button class="primary-button" type="button" id="saveDraftButton">
-            <span aria-hidden="true">+</span>
-            Save draft
-          </button>
-        </div>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <div class="app-shell">
-          <aside class="sidebar" aria-label="Post queue">
-            <div class="metric">
-              <span>Ready</span>
-              <strong id="readyCount">2</strong>
-            </div>
-            <div class="queue">
-              <button class="queue-item is-active" type="button">
-                <span class="queue-dot coral"></span>
-                <span>
-                  <strong>Morning routine cut</strong>
-                  <small>Caption drafted</small>
-                </span>
-              </button>
-              <button class="queue-item" type="button">
-                <span class="queue-dot green"></span>
-                <span>
-                  <strong>Studio setup reveal</strong>
-                  <small>Needs cover frame</small>
-                </span>
-              </button>
-              <button class="queue-item" type="button">
-                <span class="queue-dot blue"></span>
-                <span>
-                  <strong>Weekend tutorial</strong>
-                  <small>Waiting on video</small>
-                </span>
-              </button>
-            </div>
-          </aside>
+<title>CreatorDesk Publish</title>
 
-          <section class="editor" aria-labelledby="editor-title">
-            <div class="editor-main">
-              <div class="video-panel">
-                <div class="phone-frame" aria-label="Video preview mockup">
-                  <div class="video-art">
-                    <img src="./assets/video-preview.png" alt="Colorful vertical video preview for a creator post">
-                  </div>
-                  <div class="video-caption">00:28</div>
-                </div>
-              </div>
+<meta
+name="tiktok-developers-site-verification"
+content="aJRTkjxVBI3EqBbVOtczAxNbjYV9hYoK">
 
-              <form class="post-form">
-                <div class="form-row">
-                  <label for="title">Post title</label>
-                  <input id="title" name="title" type="text" value="Morning routine cut">
-                </div>
+<meta
+name="description"
+content="CreatorDesk Publish helps creators prepare, review, and publish short-form video posts.">
 
-                <div class="form-row">
-                  <label for="caption">Caption</label>
-                  <textarea id="caption" name="caption" rows="5">Tiny studio reset before the first edit of the day. Which shot would you use as the hook?</textarea>
-                </div>
+<link rel="icon" href="./assets/creator-desk-mark.png">
+<link rel="stylesheet" href="./styles.css">
 
-                <div class="split-fields">
-                  <div class="form-row">
-                    <label for="privacy">Visibility</label>
-                    <select id="privacy" name="privacy">
-                      <option>Private</option>
-                      <option>Friends</option>
-                      <option>Public</option>
-                    </select>
-                  </div>
-                  <div class="form-row">
-                    <label for="schedule">Schedule</label>
-                    <input id="schedule" name="schedule" type="datetime-local">
-                  </div>
-                </div>
+</head>
 
-                <div class="checklist" aria-label="Publishing checklist">
-                  <label><input type="checkbox" checked> Video file attached</label>
-                  <label><input type="checkbox" checked> Caption reviewed</label>
-                  <label><input type="checkbox"> Creator confirms final publish</label>
-                </div>
-              </form>
-            </div>
+<body>
 
-            <footer class="editor-footer">
-              <div>
-                <h2 id="editor-title">Draft status</h2>
-                <p id="statusText">Saved locally as a sample draft. Connect approved TikTok API credentials before live publishing.</p>
-              </div>
-              <div class="actions">
-                <button class="secondary-button" type="button">Preview</button>
-                <button class="primary-button" type="button">Prepare post</button>
-              </div>
-            </footer>
-          </section>
-        </div>
-      </section>
+<header class="topbar">
 
-      <section class="info-band" aria-labelledby="compliance-title">
-        <div>
-          <p class="eyebrow">Review-ready basics</p>
-          <h2 id="compliance-title">Built for explicit creator approval.</h2>
-        </div>
-        <p>
-          CreatorDesk Publish is designed for creators who want to draft and prepare their own posts.
-          Publishing actions should require the creator's TikTok authorization and an explicit final confirmation.
-        </p>
-      </section>
-    </main>
+<a
+class="brand"
+href="./index.html"
+aria-label="CreatorDesk Publish home">
 
-    <footer class="site-footer">
-      <span>© 2026 CreatorDesk Publish</span>
-      <a href="./privacy.html">Privacy Policy</a>
-      <a href="./terms.html">Terms of Service</a>
-      <a href="mailto:carmendickson5817@gmail.com">carmendickson5817@gmail.com</a>
-    </footer>
+<img
+src="./assets/creator-desk-mark.png"
+alt=""
+width="36"
+height="36">
 
-    <script src="./app.js"></script>
-  </body>
+<span>
+CreatorDesk Publish
+</span>
+
+</a>
+
+<nav aria-label="Primary navigation">
+
+<a href="./privacy.html">
+Privacy
+</a>
+
+<a href="./terms.html">
+Terms
+</a>
+
+<a
+class="nav-button"
+href="./auth/tiktok/callback/">
+
+Connect TikTok
+
+</a>
+
+<a
+class="nav-button"
+href="mailto:carmendickson5817@gmail.com">
+
+Contact
+
+</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<section
+class="workspace"
+aria-labelledby="workspace-title">
+
+<div class="workspace-header">
+
+<div>
+
+<p class="eyebrow">
+Creator publishing tool
+</p>
+
+<h1 id="workspace-title">
+
+Plan, review, and prepare short-form posts from one calm workspace.
+
+</h1>
+
+</div>
+
+<button
+id="saveDraftButton"
+class="primary-button"
+type="button">
+
+<span aria-hidden="true">
++
+</span>
+
+Save draft
+
+</button>
+
+</div>
+
+<div class="app-shell">
+
+<aside
+class="sidebar"
+aria-label="Post queue">
+
+<div class="metric">
+
+<span>
+Ready
+</span>
+
+<strong id="readyCount">
+2
+</strong>
+
+</div>
+
+<div class="queue">
+
+<button
+class="queue-item is-active"
+type="button">
+
+<span class="queue-dot coral"></span>
+
+<span>
+
+<strong>
+Morning routine cut
+</strong>
+
+<small>
+Caption drafted
+</small>
+
+</span>
+
+</button>
+
+<button
+class="queue-item"
+type="button">
+
+<span class="queue-dot green"></span>
+
+<span>
+
+<strong>
+Studio setup reveal
+</strong>
+
+<small>
+Needs cover frame
+</small>
+
+</span>
+
+</button>
+
+<button
+class="queue-item"
+type="button">
+
+<span class="queue-dot blue"></span>
+
+<span>
+
+<strong>
+Weekend tutorial
+</strong>
+
+<small>
+Waiting on video
+</small>
+
+</span>
+
+</button>
+
+</div>
+
+</aside>
+
+<section
+class="editor"
+aria-labelledby="editor-title">
+
+<div class="editor-main">
+
+<div class="video-panel">
+
+<div
+class="phone-frame"
+aria-label="Video preview mockup">
+
+<div class="video-art">
+
+<img
+src="./assets/video-preview.png"
+alt="Video preview">
+
+</div>
+
+<div class="video-caption">
+
+00:28
+
+</div>
+
+</div>
+
+</div>
+
+<form class="post-form">
+
+<div class="form-row">
+
+<label for="title">
+
+Post title
+
+</label>
+
+<input
+id="title"
+name="title"
+type="text"
+value="Morning routine cut">
+
+</div>
+
+<div class="form-row">
+
+<label for="caption">
+
+Caption
+
+</label>
+
+<textarea
+id="caption"
+name="caption"
+rows="5">
+
+Tiny studio reset before the first edit of the day. Which shot would you use as the hook?
+
+</textarea>
+
+</div>
+
+<div class="split-fields">
+
+<div class="form-row">
+
+<label for="privacy">
+
+Visibility
+
+</label>
+
+<select
+id="privacy"
+name="privacy">
+
+<option>
+Private
+</option>
+
+<option>
+Friends
+</option>
+
+<option>
+Public
+</option>
+
+</select>
+
+</div>
+
+<div class="form-row">
+
+<label for="schedule">
+
+Schedule
+
+</label>
+
+<input
+id="schedule"
+name="schedule"
+type="datetime-local">
+
+</div>
+
+</div>
+
+<div
+class="checklist"
+aria-label="Publishing checklist">
+
+<label>
+
+<input
+type="checkbox"
+checked>
+
+Video file attached
+
+</label>
+
+<label>
+
+<input
+type="checkbox"
+checked>
+
+Caption reviewed
+
+</label>
+
+<label>
+
+<input
+type="checkbox">
+
+Creator confirms final publish
+
+</label>
+
+</div>
+
+</form>
+
+</div>
+
+<footer class="editor-footer">
+
+<div>
+
+<h2 id="editor-title">
+
+Draft status
+
+</h2>
+
+<p id="statusText">
+
+Saved locally as a sample draft.
+
+Connect approved TikTok API credentials before live publishing.
+
+</p>
+
+</div>
+
+<div class="actions">
+
+<button
+id="previewButton"
+class="secondary-button"
+type="button">
+
+Preview
+
+</button>
+
+<button
+id="connectTikTokButton"
+class="secondary-button"
+type="button">
+
+Connect TikTok
+
+</button>
+
+<button
+id="preparePostButton"
+class="primary-button"
+type="button">
+
+Prepare post
+
+</button>
+
+</div>
+
+</footer>
+
+</section>
+
+</div>
+
+</section>
+
+<section
+class="info-band"
+aria-labelledby="compliance-title">
+
+<div>
+
+<p class="eyebrow">
+
+Review-ready basics
+
+</p>
+
+<h2 id="compliance-title">
+
+Built for explicit creator approval.
+
+</h2>
+
+</div>
+
+<p>
+
+CreatorDesk Publish is designed for creators who want to draft and prepare their own posts.
+
+Publishing actions should require TikTok authorization and explicit creator confirmation.
+
+</p>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+
+<span>
+
+© 2026 CreatorDesk Publish
+
+</span>
+
+<a href="./privacy.html">
+
+Privacy Policy
+
+</a>
+
+<a href="./terms.html">
+
+Terms of Service
+
+</a>
+
+<a href="mailto:carmendickson5817@gmail.com">
+
+[carmendickson5817@gmail.com](mailto:carmendickson5817@gmail.com)
+
+</a>
+
+</footer>
+
+<script src="./app.js"></script>
+
+</body>
+
 </html>
