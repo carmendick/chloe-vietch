@@ -4,13 +4,13 @@ const saveBtn =
 document.getElementById("saveDraftButton");
 
 const previewBtn =
-document.querySelector(".secondary-button");
+document.getElementById("previewButton");
 
 const connectBtn =
 document.getElementById("connectTikTokButton");
 
 const prepareBtn =
-document.querySelector(".primary-button:last-child");
+document.getElementById("preparePostButton");
 
 const title =
 document.getElementById("title");
@@ -18,11 +18,16 @@ document.getElementById("title");
 const caption =
 document.getElementById("caption");
 
+const video =
+document.getElementById("videoUpload");
+
 const status =
 document.getElementById("statusText");
 
 
-// LOAD
+
+// LOAD SAVED DRAFT
+
 const saved =
 localStorage.getItem("creatorDraft");
 
@@ -37,16 +42,16 @@ data.title || "";
 caption.value =
 data.caption || "";
 
-status.textContent =
-"Draft restored.";
-
 }
 
 
+
 // SAVE
+
 saveBtn.addEventListener("click",()=>{
 
 localStorage.setItem(
+
 "creatorDraft",
 
 JSON.stringify({
@@ -59,16 +64,16 @@ caption:caption.value
 
 );
 
-status.className =
-"status-success";
-
 status.textContent =
 "✓ Draft saved.";
 
 });
 
 
+
+
 // PREVIEW
+
 previewBtn.addEventListener("click",()=>{
 
 alert(
@@ -84,47 +89,239 @@ ${caption.value}`
 });
 
 
+
+
 // CONNECT
+
 connectBtn.addEventListener("click",()=>{
-
-status.className =
-"status-pending";
-
-status.textContent =
-"Connecting to TikTok...";
-
-setTimeout(()=>{
 
 window.location.href =
 "./auth/tiktok/callback/";
 
-},1200);
-
 });
 
 
-// PREPARE
-prepareBtn.addEventListener("click",()=>{
 
-if(!title.value.trim()){
+
+// PREPARE + UPLOAD
+
+prepareBtn.addEventListener("click", async ()=>{
+
+if(!video.files.length){
 
 alert(
-"Enter title."
+"Select a video first."
 );
 
 return;
 
 }
 
-status.className =
-"status-success";
+status.textContent =
+"Uploading…";
+
+const data =
+new FormData();
+
+data.append(
+"video",
+video.files[0]
+);
+
+try{
+
+const res =
+await fetch(
+
+"http://127.0.0.1:5001/upload",
+
+{
+
+method:"POST",
+
+body:data
+
+}
+
+);
+
+const json =
+await res.json();
+
+if(json.success){
 
 status.textContent =
-"✓ Post prepared.";
+`✓ Uploaded: ${json.filename}`;
+
+}else{
+
+status.textContent =
+"Upload failed";
+
+}
+
+}catch(err){
+
+status.textContent =
+"Backend unavailable";
+
+}
 
 });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+
+// const saveBtn =
+// document.getElementById("saveDraftButton");
+
+// const previewBtn =
+// document.querySelector(".secondary-button");
+
+// const connectBtn =
+// document.getElementById("connectTikTokButton");
+
+// const prepareBtn =
+// document.querySelector(".primary-button:last-child");
+
+// const title =
+// document.getElementById("title");
+
+// const caption =
+// document.getElementById("caption");
+
+// const status =
+// document.getElementById("statusText");
+
+
+// // LOAD
+// const saved =
+// localStorage.getItem("creatorDraft");
+
+// if(saved){
+
+// const data =
+// JSON.parse(saved);
+
+// title.value =
+// data.title || "";
+
+// caption.value =
+// data.caption || "";
+
+// status.textContent =
+// "Draft restored.";
+
+// }
+
+
+// // SAVE
+// saveBtn.addEventListener("click",()=>{
+
+// localStorage.setItem(
+// "creatorDraft",
+
+// JSON.stringify({
+
+// title:title.value,
+
+// caption:caption.value
+
+// })
+
+// );
+
+// status.className =
+// "status-success";
+
+// status.textContent =
+// "✓ Draft saved.";
+
+// });
+
+
+// // PREVIEW
+// previewBtn.addEventListener("click",()=>{
+
+// alert(
+
+// `Title:
+// ${title.value}
+
+// Caption:
+// ${caption.value}`
+
+// );
+
+// });
+
+
+// // CONNECT
+// connectBtn.addEventListener("click",()=>{
+
+// status.className =
+// "status-pending";
+
+// status.textContent =
+// "Connecting to TikTok...";
+
+// setTimeout(()=>{
+
+// window.location.href =
+// "./auth/tiktok/callback/";
+
+// },1200);
+
+// });
+
+
+// // PREPARE
+// prepareBtn.addEventListener("click",()=>{
+
+// if(!title.value.trim()){
+
+// alert(
+// "Enter title."
+// );
+
+// return;
+
+// }
+
+// status.className =
+// "status-success";
+
+// status.textContent =
+// "✓ Post prepared.";
+
+// });
+
+// });
 
 
 
