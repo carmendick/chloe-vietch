@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -8,6 +9,45 @@ CORS(app)
 UPLOAD_FOLDER = "uploads"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+if __name__ == "__main__":
+
+
+@app.route("/draft", methods=["POST"])
+def draft():
+
+    data = request.json
+
+    os.makedirs(
+        "drafts",
+        exist_ok=True
+    )
+
+    filename = (
+        data["title"]
+        .replace(" ", "_")
+        + ".json"
+    )
+
+    path = os.path.join(
+        "drafts",
+        filename
+    )
+
+    with open(
+        path,
+        "w"
+    ) as f:
+
+        json.dump(
+            data,
+            f,
+            indent=2
+        )
+
+    return jsonify({
+        "saved": True
+    })
 
 
 @app.route("/")

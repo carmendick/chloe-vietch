@@ -148,6 +148,37 @@ body:data
 const json =
 await res.json();
 
+await fetch(
+"http://127.0.0.1:5001/draft",
+
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+
+title:title.value,
+
+caption:caption.value,
+
+schedule:
+document
+.getElementById(
+"schedule"
+).value,
+
+video:
+json.filename
+
+})
+
+}
+);
+
 if(json.success){
 
 status.textContent =
