@@ -7,47 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 UPLOAD_FOLDER = "uploads"
-
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-if __name__ == "__main__":
-
-
-@app.route("/draft", methods=["POST"])
-def draft():
-
-    data = request.json
-
-    os.makedirs(
-        "drafts",
-        exist_ok=True
-    )
-
-    filename = (
-        data["title"]
-        .replace(" ", "_")
-        + ".json"
-    )
-
-    path = os.path.join(
-        "drafts",
-        filename
-    )
-
-    with open(
-        path,
-        "w"
-    ) as f:
-
-        json.dump(
-            data,
-            f,
-            indent=2
-        )
-
-    return jsonify({
-        "saved": True
-    })
 
 
 @app.route("/")
@@ -70,22 +30,61 @@ def upload():
 
     file = request.files.get("video")
 
-    if not file:
+    if file is None:
         return jsonify({
             "success": False,
             "message": "No file uploaded"
         }), 400
 
-    path = os.path.join(
+    save_path = os.path.join(
         UPLOAD_FOLDER,
         file.filename
     )
 
-    file.save(path)
+    file.save(save_path)
 
     return jsonify({
         "success": True,
         "filename": file.filename
+    })
+
+
+@app.route("/draft", methods=["POST"])
+def draft():
+
+    data = request.get_json()
+
+    if data is None:
+        return jsonify({
+            "saved": False
+        }), 400
+
+    os.makedirs("drafts", exist_ok=True)
+
+    title = data.get(
+        "title",
+        "untitled"
+    )
+
+    filename = (
+        title.replace(" ", "_")
+        + ".json"
+    )
+
+    filepath = os.path.join(
+        "drafts",
+        filename
+    )
+
+    with open(filepath, "w") as f:
+        json.dump(
+            data,
+            f,
+            indent=2
+        )
+
+    return jsonify({
+        "saved": True
     })
 
 
