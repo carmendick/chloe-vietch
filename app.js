@@ -238,6 +238,34 @@ window.location.href =
 }
 
 
+const logout =
+
+document.getElementById(
+"logoutButton"
+);
+
+if(logout){
+
+logout.addEventListener(
+
+"click",
+
+()=>{
+
+localStorage.removeItem(
+"user"
+);
+
+window.location.href=
+"./login.html";
+
+}
+
+);
+
+}
+
+
 
 
 const user =
