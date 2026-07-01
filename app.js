@@ -202,6 +202,64 @@ status.textContent =
 
 });
 
+const loginForm =
+document.getElementById(
+"loginForm"
+);
+
+if(loginForm){
+
+loginForm.addEventListener(
+"submit",
+
+(e)=>{
+
+e.preventDefault();
+
+const email =
+document
+.getElementById(
+"email"
+)
+.value;
+
+localStorage.setItem(
+"user",
+email
+);
+
+window.location.href =
+"./dashboard.html";
+
+}
+
+);
+
+}
+
+
+
+const user =
+localStorage.getItem(
+"user"
+);
+
+const heading =
+document.getElementById(
+"workspace-title"
+);
+
+if(
+user &&
+heading
+){
+
+heading.textContent =
+
+`Welcome ${user}`;
+
+}
+
 
 
 
