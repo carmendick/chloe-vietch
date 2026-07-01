@@ -239,23 +239,23 @@ window.location.href =
 
 
 
+
 const user =
 localStorage.getItem(
 "user"
 );
 
-const heading =
+const welcome =
 document.getElementById(
-"workspace-title"
+"welcomeText"
 );
 
 if(
 user &&
-heading
+welcome
 ){
 
-heading.textContent =
-
+welcome.textContent =
 `Welcome ${user}`;
 
 }
