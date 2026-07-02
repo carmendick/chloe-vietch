@@ -161,9 +161,16 @@ headers:{
 
 body:JSON.stringify({
 
-title:title.value,
+user:
+localStorage.getItem(
+"user"
+),
 
-caption:caption.value,
+title:
+title.value,
+
+caption:
+caption.value,
 
 schedule:
 document

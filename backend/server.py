@@ -54,29 +54,49 @@ def draft():
 
     data = request.get_json()
 
-    if data is None:
-        return jsonify({
-            "saved": False
-        }), 400
-
-    os.makedirs("drafts", exist_ok=True)
-
-    title = data.get(
-        "title",
-        "untitled"
+    user = data.get(
+        "user",
+        "anonymous"
     )
 
-    filename = (
-        title.replace(" ", "_")
-        + ".json"
+    safe_user = (
+        user
+        .replace("@", "_")
+        .replace(".", "_")
+    )
+
+    folder = os.path.join(
+        "drafts",
+        safe_user
+    )
+
+    os.makedirs(
+        folder,
+        exist_ok=True
+    )
+
+    title = (
+        data
+        .get(
+            "title",
+            "untitled"
+        )
+        .replace(
+            " ",
+            "_"
+        )
     )
 
     filepath = os.path.join(
-        "drafts",
-        filename
+        folder,
+        f"{title}.json"
     )
 
-    with open(filepath, "w") as f:
+    with open(
+        filepath,
+        "w"
+    ) as f:
+
         json.dump(
             data,
             f,
@@ -86,7 +106,6 @@ def draft():
     return jsonify({
         "saved": True
     })
-
 
 if __name__ == "__main__":
     app.run(
