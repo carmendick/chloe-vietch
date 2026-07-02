@@ -295,6 +295,93 @@ welcome.textContent =
 
 }
 
+async function loadMyDrafts(){
+
+const user =
+localStorage.getItem(
+"user"
+);
+
+if(!user){
+return;
+}
+
+const res =
+await fetch(
+
+`http://127.0.0.1:5001/my-drafts?user=${encodeURIComponent(user)}`
+
+);
+
+const drafts =
+await res.json();
+
+const queue =
+document.querySelector(
+".queue"
+);
+
+const count =
+document.getElementById(
+"readyCount"
+);
+
+if(
+!queue ||
+!count
+){
+return;
+}
+
+queue.innerHTML="";
+
+count.textContent =
+drafts.length;
+
+drafts.forEach((draft)=>{
+
+const item =
+document.createElement(
+"button"
+);
+
+item.className =
+"queue-item";
+
+item.type =
+"button";
+
+item.innerHTML = `
+
+<span class="queue-dot green"></span>
+
+<span>
+
+<strong>
+
+${draft.title}
+
+</strong>
+
+<small>
+
+${draft.schedule}
+
+</small>
+
+</span>
+
+`;
+
+queue.appendChild(
+item);
+
+});
+
+}
+
+loadMyDrafts();
+
 
 
 

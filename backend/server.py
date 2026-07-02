@@ -107,6 +107,55 @@ def draft():
         "saved": True
     })
 
+@app.route("/my-drafts")
+def my_drafts():
+
+    user = request.args.get(
+        "user",
+        ""
+    )
+
+    safe_user = (
+        user
+        .replace("@", "_")
+        .replace(".", "_")
+    )
+
+    folder = os.path.join(
+        "drafts",
+        safe_user
+    )
+
+    if not os.path.exists(
+        folder
+    ):
+        return jsonify([])
+
+    posts = []
+
+    for file in os.listdir(
+        folder
+    ):
+
+        if file.endswith(
+            ".json"
+        ):
+
+            with open(
+                os.path.join(
+                    folder,
+                    file
+                )
+            ) as f:
+
+                posts.append(
+                    json.load(f)
+                )
+
+    return jsonify(
+        posts
+    )
+
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
