@@ -382,6 +382,127 @@ item);
 
 loadMyDrafts();
 
+const connect =
+
+document.getElementById(
+"connectAccount"
+);
+
+if(connect){
+
+connect.addEventListener(
+
+"click",
+
+()=>{
+
+const accounts =
+
+JSON.parse(
+
+localStorage.getItem(
+"accounts"
+)
+
+|| "[]"
+
+);
+
+accounts.push({
+
+name:
+
+`TikTok Account ${
+accounts.length+1
+}`,
+
+connected:
+
+new Date()
+
+});
+
+localStorage.setItem(
+
+"accounts",
+
+JSON.stringify(
+accounts
+)
+
+);
+
+renderAccounts();
+
+}
+
+);
+
+}
+
+
+
+function renderAccounts(){
+
+const list =
+
+document.getElementById(
+"accountList"
+);
+
+if(
+!list
+){
+return;
+}
+
+list.innerHTML="";
+
+const accounts =
+
+JSON.parse(
+
+localStorage.getItem(
+"accounts"
+)
+
+|| "[]"
+
+);
+
+accounts.forEach((acc)=>{
+
+const div =
+document.createElement(
+"div"
+);
+
+div.className=
+"queue-item";
+
+div.innerHTML=`
+
+<strong>
+
+${acc.name}
+
+</strong>
+
+<br>
+
+Connected
+
+`;
+
+list.appendChild(
+div
+);
+
+});
+
+}
+
+renderAccounts();
 
 
 
