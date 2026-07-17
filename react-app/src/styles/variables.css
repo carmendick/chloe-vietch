@@ -1,0 +1,45 @@
+
+:root{
+
+--primary:#2563eb;
+--primary-dark:#1d4ed8;
+
+--success:#22c55e;
+
+--warning:#f59e0b;
+
+--danger:#ef4444;
+
+--card:#FFFFFF;
+
+--background:#f4f7fb;
+
+--sidebar:#0f172a;
+
+--surface:#ffffff;
+
+--border:#e5e7eb;
+
+--text:#111827;
+
+--text-light:#6b7280;
+
+--radius:14px;
+
+--shadow:
+
+0 10px 30px rgba(0,0,0,.08);
+
+--transition:.25s ease;
+
+font-family:
+
+Inter,
+
+Segoe UI,
+
+Roboto,
+
+sans-serif;
+
+}

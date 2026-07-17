@@ -1,0 +1,69 @@
+import axios from "axios";
+
+const API = "http://127.0.0.1:5001";
+
+export async function createPost(token, post) {
+
+    const response = await axios.post(
+
+        `${API}/posts`,
+
+        post,
+
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+    );
+
+    return response.data;
+
+}
+
+export async function getPosts(token) {
+
+    const response = await axios.get(
+
+        `${API}/posts`,
+
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+    );
+
+    return response.data;
+
+}
+
+export async function uploadVideo(token, file) {
+
+    const formData = new FormData();
+
+    formData.append("video", file);
+
+    const response = await axios.post(
+
+        `${API}/posts/upload`,
+
+        formData,
+
+        {
+
+            headers: {
+
+                Authorization: `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    return response.data;
+
+}
