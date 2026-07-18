@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
 
     SECRET_KEY = os.getenv(
@@ -12,9 +13,12 @@ class Config:
         "creatordesk-jwt-secret"
     )
 
-    SQLALCHEMY_DATABASE_URI = (
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        "DATABASE_URL",
         "sqlite:///creator.db"
     )
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     TIKTOK_CLIENT_KEY = os.getenv(
         "TIKTOK_CLIENT_KEY"
@@ -28,4 +32,9 @@ class Config:
         "TIKTOK_REDIRECT_URI"
     )
 
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    UPLOAD_FOLDER = os.getenv(
+        "UPLOAD_FOLDER",
+        "uploads"
+    )
+
+    MAX_CONTENT_LENGTH = 1024 * 1024 * 1024   # 1 GB uploads
