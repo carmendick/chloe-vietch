@@ -68,21 +68,92 @@ def list_posts():
 
     return jsonify([
 
-        {
-
+      {
             "id": p.id,
 
             "caption": p.caption,
 
             "status": p.status,
 
-            "video": p.video_path
+            "video": p.video_path,
 
-        }
+            "created_at": p.created_at.strftime("%Y-%m-%d %H:%M")
+      }
 
         for p in posts
 
     ])
+
+
+@posts_bp.route("/<int:post_id>", methods=["DELETE"])
+@jwt_required()
+def delete_post(post_id):
+
+    user_id = int(get_jwt_identity())
+
+    post = Post.query.filter_by(
+        id=post_id,
+        user_id=user_id
+    ).first()
+
+    if not post:
+
+        return jsonify({
+            "success": False,
+            "message": "Post not found."
+        }), 404
+
+    db.session.delete(post)
+
+    db.session.commit()
+
+    return jsonify({
+        "success": True
+    })
+
+
+@posts_bp.route("/<int:post_id>", methods=["PUT"])
+@jwt_required()
+def update_post(post_id):
+
+    user_id = int(get_jwt_identity())
+
+    post = Post.query.filter_by(
+        id=post_id,
+        user_id=user_id
+    ).first()
+
+    if not post:
+
+        return jsonify({
+            "success": False,
+            "message": "Post not found."
+        }), 404
+
+    data = request.get_json()
+
+    post.caption = data.get(
+        "caption",
+        post.caption
+    )
+
+    db.session.commit()
+
+    return jsonify({
+
+        "success": True,
+
+        "post": {
+
+            "id": post.id,
+
+            "caption": post.caption,
+
+            "status": post.status
+
+        }
+
+    })
 
 @posts_bp.route("/upload", methods=["POST"])
 @jwt_required()

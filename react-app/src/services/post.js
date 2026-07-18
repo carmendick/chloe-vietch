@@ -67,3 +67,57 @@ export async function uploadVideo(token, file) {
     return response.data;
 
 }
+
+
+export async function deletePost(token, id) {
+
+    const response = await axios.delete(
+
+        `${API}/posts/${id}`,
+
+        {
+
+            headers: {
+
+                Authorization: `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    return response.data;
+
+}
+
+
+export async function updatePost(
+    token,
+    id,
+    caption
+) {
+
+    const response = await axios.put(
+
+        `${API}/posts/${id}`,
+
+        {
+            caption
+        },
+
+        {
+
+            headers: {
+
+                Authorization: `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    return response.data;
+
+}

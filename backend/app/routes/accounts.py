@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, redirect, request
 
 from flask_jwt_extended import (
     jwt_required,
@@ -7,6 +7,8 @@ from flask_jwt_extended import (
 
 from app.extensions import db
 from app.models import TikTokAccount
+
+from app.services.tiktok_service import TikTokService
 
 accounts_bp = Blueprint(
     "accounts",
@@ -37,6 +39,42 @@ def get_accounts():
 
     ])
 
+
+@accounts_bp.route("/connect", methods=["GET"])
+# @jwt_required()
+def connect_account():
+
+    url = TikTokService.authorization_url()
+
+    return redirect(url)
+
+
+@accounts_bp.route("/callback", methods=["GET"])
+def callback():
+
+    code = request.args.get("code")
+
+    state = request.args.get("state")
+
+    if not code:
+
+        return jsonify({
+
+            "success": False,
+
+            "message": "Authorization code missing."
+
+        }), 400
+
+    return jsonify({
+
+        "success": True,
+
+        "code": code,
+
+        "state": state
+
+    })
 
 @accounts_bp.route("/demo-connect", methods=["POST"])
 @jwt_required()
