@@ -2,6 +2,16 @@ import os
 
 from app import create_app
 
+from flask import jsonify
+
+@app.route("/")
+def home():
+    return jsonify({
+        "name": "CreatorDesk API",
+        "status": "online",
+        "version": "1.0"
+    })
+
 app = create_app()
 
 if __name__ == "__main__":
