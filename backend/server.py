@@ -1,8 +1,11 @@
 import os
 
 from app import create_app
-
 from flask import jsonify
+
+# Create the Flask application FIRST
+app = create_app()
+
 
 @app.route("/")
 def home():
@@ -12,15 +15,13 @@ def home():
         "version": "1.0"
     })
 
-app = create_app()
 
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5001)),
-        debug=True
+        debug=True,
     )
-
 
 # from app import create_app
 
