@@ -2,10 +2,20 @@ import os
 
 from app import create_app
 from flask import jsonify
+from flask_cors import CORS
+
 
 # Create the Flask application FIRST
 app = create_app()
 
+
+CORS(
+    app,
+    origins=[
+        "https://peaceful-selkie-c89412.netlify.app/"
+    ],
+    supports_credentials=True
+)
 
 @app.route("/")
 def home():
